@@ -1,0 +1,74 @@
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-img-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 0.3em solid #141414;
+  border-radius: 2em;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: high-quality;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  display: block;
+}
+
+/* Scroll Section */
+.carousel-scroll-section {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  padding: 2em;
+  background-color: #edf1e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-img-wrapper-scroll {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-110%) scale(0.25) rotate(-15deg) translateZ(0);
+  border: 0.3em solid #141414;
+  border-radius: 2em;
+  overflow: hidden;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .carousel-scroll-section {
+    padding: 1em;
+  }
+
+  .carousel-img-wrapper-scroll {
+    border-radius: 1em;
+    border-width: 0.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-scroll-section {
+    height: 80svh;
+    padding: 0.5em;
+  }
+}

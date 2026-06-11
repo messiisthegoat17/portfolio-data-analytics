@@ -1,0 +1,229 @@
+/* ══════════════════════════════════════
+   HeroSection.css
+   Scoped styles for the new big-name hero
+   ══════════════════════════════════════ */
+
+/* ── Google Fonts – load once here ── */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap");
+
+/* ── CSS Variables (scoped fallback – root vars from index.css take precedence) ── */
+:root {
+  --hs-bg: #edf1e8;
+  --hs-fg: #141414;
+}
+
+/* ── Monospace utility ── */
+.hs-mn {
+  font-family: "Space Mono", monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.125;
+}
+
+/* ── Availability Badge ── */
+.hs-availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.4em 0.9em;
+  border: 0.12em solid var(--hs-fg);
+  border-radius: 100px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: transparent;
+  cursor: default;
+  color: var(--hs-fg);
+}
+
+.hs-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #3fcf6e;
+  flex-shrink: 0;
+  animation: hs-pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes hs-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.7); }
+}
+
+/* ══════════════════════════════════════
+   HERO SECTION  —  Big Name
+══════════════════════════════════════ */
+.hs-hero {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: hidden;
+  background-color: var(--hs-bg);
+  color: var(--hs-fg);
+}
+
+.hs-hero h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.9;
+  font-size: 18vw;
+  color: var(--hs-fg);
+}
+
+.hs-hero a {
+  text-decoration: none;
+  color: var(--hs-fg);
+}
+
+.hs-hero-header-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.hs-hero-header {
+  position: relative;
+  line-height: 0.85;
+}
+
+.hs-hero-header-1 {
+  transform: translateX(-2%);
+  z-index: 1;
+}
+
+.hs-hero-header-2 {
+  transform: translateX(10%);
+  z-index: 2;
+}
+
+/* Footer strip */
+.hs-hero-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hs-hero-footer-scroll-down {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hs-hero-footer-symbols {
+  height: 1rem;
+}
+
+.hs-hero-footer-symbols img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hs-resume-link:hover {
+  opacity: 0.6;
+}
+
+/* ── Hero Carousel Overlay ── */
+.hero-carousel-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%;
+  height: 55%;
+  z-index: 5;
+}
+
+/* Frame wrapper: constrain + animate small→big once */
+.hero-carousel-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 2em;
+  overflow: hidden;
+
+  /* small → big initial state */
+  transform: scale(0.78);
+  opacity: 0.001;
+  transform-origin: center;
+
+  /* prepares a smooth scale in when we toggle class */
+  will-change: transform, opacity;
+}
+
+
+/* Toggle this class once when the frame scrolls into view */
+.hero-carousel-frame[data-inview="true"] {
+  animation: hs-carousel-frame-enter 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hs-carousel-frame-enter {
+  from {
+    transform: scale(0.78);
+    opacity: 0.001;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+/* ══════════════════════════════════════
+   SCROLL SECTION  —  Scroll animation
+══════════════════════════════════════ */
+
+/* ── Mobile ── */
+@media (max-width: 1000px) {
+  .hs-hero-footer-symbols {
+    display: none;
+  }
+
+  .hs-hero-footer {
+    justify-content: flex-end;
+  }
+
+  .hs-hero-footer-scroll-down {
+    position: static;
+    transform: none;
+  }
+
+  .hero-carousel-overlay {
+    width: 70%;
+    height: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-carousel-overlay {
+    width: 80%;
+    height: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-carousel-overlay {
+    width: 90%;
+    height: 40%;
+  }
+}
